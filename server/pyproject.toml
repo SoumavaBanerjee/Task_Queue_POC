@@ -1,21 +1,5 @@
-[tool.poetry]
-name = "server"
-version = "0.1.0"
-description = "a simple POC demonstrating usage of celery with fastapi"
-authors = ["Soumava Banerjee <soumava.rivu@gmail.com>"]
-readme = "README.md"
+[tool.black]
+line-length = 88
 
-[tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "^0.103.0"
-celery = "^5.3.1"
-
-
-[virtualenvs]
-in-project = true
-path = ".env"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.ruff]
+format_on_save = true
