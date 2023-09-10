@@ -1,4 +1,4 @@
-function App() {
+export const App = () => {
   const handleClick = () => {
     console.log("hello");
   };
@@ -15,6 +15,4 @@ function App() {
       </div>
     </>
   );
-}
-
-export default App;
+};

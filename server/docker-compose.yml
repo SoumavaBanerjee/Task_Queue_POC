@@ -1,12 +1,49 @@
 version: "3"
 services:
+  redis:
+    container_name: "redis"
+    image: redis:7.2-alpine
+    ports:
+      - "6379:6379"
+
   web:
+    container_name: "Task_Queue_POC"
     build:
       context: .
       dockerfile: .dockerfile
+    command: "uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload"
     volumes:
       - .:/app
     ports:
       - "8000:8000"
+    restart: "always"
+    depends_on:
+      - redis
 
-   
+  celery-worker:
+    container_name: "celery_worker"
+    build:
+      context: .
+      dockerfile: .dockerfile
+    command: "celery -A src.worker.Celery.celery worker --loglevel=info"
+    volumes:
+      - .:/app
+    environment:
+      - REDIS_BROKER_URL = ${REDIS_BROKER_URL}
+      - REDIS_BACKEND_URL = ${REDIS_BACKEND_URL}
+    depends_on:
+      - web
+      - redis
+
+  flower:
+    container_name: "Flower_monitoring"
+    build:
+      context: .
+      dockerfile: .dockerfile
+    command: "celery -A src.worker.Celery.celery flower --port=5555"
+    ports:
+      - "5555:5555"
+    depends_on:
+      - web
+      - redis
+      - celery-worker
