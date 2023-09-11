@@ -3,6 +3,5 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "python.analysis.typeCheckingMode": "basic",
-    "python.defaultInterpreterPath": "./server/.venv/bin/python3",
     "python.terminal.activateEnvironment": true
 }

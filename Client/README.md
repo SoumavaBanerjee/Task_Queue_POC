@@ -25,3 +25,34 @@ If you are developing a production application, we recommend updating the config
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Instructions
+
+- Create a `.env` file at client root. Add your backend url to `.env` as mentioned in `.env.example`. If you're following defaults, the url should be http://0.0.0.0:800/
+- use `npm run dev` to start the dev server
+
+## Directory Structure
+
+```
+./client
+├── README.md
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+│ └── vite.svg
+├── src
+│ ├── App.tsx
+│ ├── assets
+│ │ └── react.svg
+│ ├── hooks
+│ │ └── useInterval.ts
+│ ├── interfaces
+│ │ └── index.tsx
+│ ├── main.tsx
+│ ├── useApp.ts
+│ └── vite-env.d.ts
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+```
