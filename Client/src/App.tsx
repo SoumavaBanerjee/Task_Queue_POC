@@ -1,7 +1,7 @@
+import { useApp } from "./useApp";
+
 export const App = () => {
-  const handleClick = () => {
-    console.log("hello");
-  };
+  const { handleClick, progressValue, running } = useApp();
 
   return (
     <>
@@ -10,9 +10,13 @@ export const App = () => {
         <button onClick={handleClick}>Create a task</button>
       </div>
 
-      <div className="progressbar">
-        <progress value={0} max={100} />
-      </div>
+      {running && progressValue && (
+        <div className="progressbar">
+          <progress value={progressValue} max={100} />
+        </div>
+      )}
+
+      {running === false && <p>Done!</p>}
     </>
   );
 };
